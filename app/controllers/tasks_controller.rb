@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   def index
-    @tasks = Task.all.page(params[:page])
+    @tasks = Task.order(created_at: :desc).page(params[:page]).per(3)
   end
 
   def show
@@ -43,9 +43,9 @@ class TasksController < ApplicationController
     flash[:success] = 'Task は正常に削除されました'
     redirect_to tasks_url
   end
-
+  
   private
-
+  
   def set_task
     @task = Task.find(params[:id])
   end
