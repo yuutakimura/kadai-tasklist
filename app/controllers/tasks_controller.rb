@@ -1,50 +1,49 @@
 class TasksController < ApplicationController
   
   def index
-    @tasks = Task.all
+    @tasks = Tasks.all
   end 
   
   def show
-    @task = Task.find(params[:id])
+    set_tasks
   end 
   
   def new 
-    @task = Task.new
+    @tasks = Tasks.new
   end 
   
   def create
-    @task = Task.new(task_params)
+    @tasks = Tasks.new(tasks_params)
     
-    if @task.save
-      flash[:success] = '正常に登録されました'
-      redirect_to @task
+    if @tasks.save
+      flash[:success] = 'Tasks が正常に登録されました'
+      redirect_to @tasks
     else
-      flash.now[:danger] = '登録されませんでした'
+      flash.now[:danger] = 'Tasks が登録されませんでした'
       render:new
     end
   end
   
   def edit
-    @task = Task.find(params[:id])
+    set_tasks
   end 
   
   def update
-    @task = Task.find(params[:id])
-    
-    if @task.update(task_params)
-      flash[:success] = '更新できました'
-      redirect_to @task
+    set_tasks
+    if @tasks.update(tasks_params)
+      flash[:success] = 'Tasks は更新できました'
+      redirect_to @tasks
     else
-      flash.now[:danger] = '更新できませんでした'
+      flash.now[:danger] = 'Tasks は更新できませんでした'
       render:edit
     end
   end 
   
   def destroy
-    @task = Task.find(params[:id])
+    set_tasks
     @task.destroy
     
-    flash[:success] ='削除しました'
+    flash[:success] ='Tasks は削除しました'
     redirect_to tasks_url
   end 
 
@@ -52,8 +51,10 @@ class TasksController < ApplicationController
   private
   #Strong Parameter
   
-  def task_params
-    params.require(:task).permit(:content, :status)
+  def set_tasks
+    @tasks = Tasks.find(params[:id])
   end 
-  
+  def tasks_params
+    params.require(:tasks).permit(:content)
+  end  
 end 
