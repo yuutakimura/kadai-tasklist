@@ -1,13 +1,28 @@
-<h1>新規タスク登録ページ</h1>
+<h1>id = 
+<%= @task.id %>
+ のタスク詳細ページ</h1>
 
- <%= form_for(@task) do |f| %>
- <%= f.label :content, 'タイトル' %>
- <%= f.text_field :content %>
- 
-  <%= f.label :status, 'メッセージ' %>
- <%= f.text_field :status %>
-  
- <%= f.submit '投稿' %>
- <% end %>
- 
- <%= link_to '一覧に戻る', tasks_path %>
+<table class="table table-bordered">
+  <tr>
+    <th>id</th>
+    <td>
+<%= @task.id %>
+</td>
+  </tr>
+  <tr>
+    <th>ステ-タス</th>
+    <td>
+<%= @task.status %>
+</td>
+  </tr>
+  <tr>
+    <th>タスク</th>
+    <td>
+<%= @task.content %>
+</td>
+  </tr>
+</table>
+
+<%= link_to 'このタスクを編集する', edit_task_path(@task), class: 'btn btn-default' %>
+
+<%= link_to 'このタスクを削除する', @task, method: :delete, data: { confirm: '本当に削除してよろしいですか？' }, class: 'btn btn-danger' %>
