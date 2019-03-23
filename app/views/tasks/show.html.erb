@@ -1,19 +1,19 @@
-<h1>id: <%= @tasks.id %> のタスク詳細ページ</h1>
+<h1>id: <%= @task.id %> のタスク詳細ページ</h1>
 
 <table class="table table-bordered">
   <tr>
     <th>id</th>
-    <td><%= @tasks.id %></td>
+    <td><%= @task.id %></td>
   </tr>
   <tr>
     <th>ステータス</th>
-    <td><%= @tasks.status %></td>
+    <td><%= @task.status %></td>
   </tr>
   <tr>
     <th>タスク</th>
-    <td><%= @tasks.content %></td>
+    <td><%= @task.content %></td>
   </tr>
 </table>
-<%= link_to '一覧に戻る', tasks_path %>
-<%= link_to 'このタスクを編集する', edit_tasks_path(@tasks) %>
-<%= link_to 'このタスクを削除する', @tasks, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %>
+<%= link_to '一覧に戻る', task_path %>
+<%= link_to 'このタスクを編集する', edit_task_path(@task) %>
+<%= link_to 'このタスクを削除する', @task, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %>
