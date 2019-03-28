@@ -12,7 +12,7 @@
       <% @tasks.each do |task| %>
         <tr>
           <td><%= link_to task.id, task %></td>
-          <td><%= task.title %></td>
+          <td><%= task.status %></td>
           <td><%= task.content %></td>
         </tr>
       <% end %>
@@ -25,3 +25,4 @@
 
 
 <%= link_to '新規タスクを登録', new_task_path, class: "btn btn-primary" %>
+<%= render 'tasks', tasks: @tasks %>
