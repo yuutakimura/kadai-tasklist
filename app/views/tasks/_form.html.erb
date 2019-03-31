@@ -22,7 +22,7 @@
         <div class="form-group">
           <div>
             <label class="control-label">ステータス</label>
-            <%= f.select :status, options_for_select(['未着手', '仕掛り', '承認待ち', '完了']), {}, class: "form-control" %>
+              <%= f.text_field :status, class: 'form-control' %>
           </div>
         </div>
         
