@@ -1,11 +1,38 @@
 <h1>新規タスク登録ページ</h1>
 
  <%= render 'form', task: @task %>
- <%= form_for(@task) do |f| %>
- <%= f.label :content, 'タスク' %>
- <%= f.text_field :content %>
+ <div class="text-center">
+  <h1>Sign up</h1>
+</div>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+
+    <%= form_for(@task) do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
+      <div class="form-group">
+        <%= f.label :name, 'Name' %>
+        <%= f.text_field :name, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :email, 'Email' %>
+        <%= f.email_field :email, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password, 'Password' %>
+        <%= f.password_field :password, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password_confirmation, 'Confirmation' %>
+        <%= f.password_field :password_confirmation, class: 'form-control' %>
+      </div>
+
+      <%= f.submit 'Sign up', class: 'btn btn-primary btn-block' %>
+    <% end %>
+  </div>
+</div>
  
- <%= f.submit '投稿' %>
- <% end %>
  
- <%= link_to '一覧に戻る', tasks_path %>

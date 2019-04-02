@@ -18,8 +18,12 @@ class TasksController < ApplicationController
      if @task.save
       flash[:success] = 'Task が正常に投稿されました'
       redirect_to @task
+      flash[:success] = 'ユーザを登録しました。'
+      redirect_to @task
     else
       flash.now[:danger] = 'Task が投稿されませんでした'
+      render :new
+      flash.now[:danger] = 'ユーザの登録に失敗しました。'
       render :new
      end
   end
@@ -39,6 +43,7 @@ class TasksController < ApplicationController
   end
 
   def destroy
+    @task=Task.find(params[:id])
     @task.destroy
 
     flash[:success] = 'Task は正常に削除されました'
@@ -52,6 +57,6 @@ class TasksController < ApplicationController
   end
   
   def task_params
-    params.require(:task).permit(:content, :status)
+    params.require(:task).permit(:content, :status, :name, :email, :password, :password_confirmation)
   end
 end
