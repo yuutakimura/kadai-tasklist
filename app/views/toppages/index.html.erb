@@ -1,17 +1,17 @@
 <% if logged_in? %>
- <div class="row">
-    <aside class="col-md-4">
-      <%= from_for(@micropost) do |f| %>
-        <div class="from-group">
-          <%= f.text_area :content, class: 'from-control', rows: 5 %>
-        </div>
-        <%= f.subit 'Post', class: 'btn btn-primary btn btn-blocl' %>
-       <% end %>
+<div class="row">
+  <aside class="col-md-4">
+     <%= form_for(@micropost) do |f| %>
+       <div class="form-group">
+         <%= f.text_area :content, class: 'form-control', rows: 5 %>
+       </div>
+       <%= f.submit 'Post', class: 'btn btn-primary btn-block' %>
+      <% end %>
     </aside>
     <div class="col-xs-8">
-      <%= render 'microposts/microposts', microposts:@microposts %>
+      <%= render 'microposts/microposts', microposts: @microposts %>
     </div>
- </div>
+  </div>
  <P>ログイン完了ユーザ: <%= current_user.name %></P>
 <% else %>
 <div class="center jumbotron">
